@@ -17,7 +17,7 @@ QuizGenie is a web application that helps students prepare for exams. Students c
 
 | Category | Technology |
 |----------|------------|
-| Frontend | React, Vite 8.3.6, Axios, React Router |
+| Frontend | React 19.3.1, React DOM 19.3.1, React Router DOM 7.18.5, Axios 1.21.0, Vite 8.3.6|
 | Backend | Node.js 24.14.0, Express |
 | Database | MySQL 8.0.45 |
 | AI | Gemini API |
@@ -90,7 +90,7 @@ Open the local link shown in the terminal in your browser.
 1. **Generate a Quiz:** Upload a lecture PDF or type a topic, choose the difficulty and number of questions, then click generate.
 2. **Attempt the Quiz:** Select an answer for each question and move between questions with the Previous and Next buttons.
 3. **View Results:** After you submit, see your score, percentage, and correct and wrong answers with explanations. Click **Try Again** to reattempt.
-4. **Manage Saved Quizzes:** Go to Saved Quizzes to open, rename or delete any quiz.
+4. **Manage Saved Quizzes:** On the Home page, start, rename or delete any saved quiz.
 
 ## Team Members and Roles
 
