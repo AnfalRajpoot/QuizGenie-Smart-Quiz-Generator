@@ -1,2 +1,111 @@
-# QuizGenie-Smart-Quiz-Generator
-An AI-powered quiz generation platform that transforms students' lecture notes into interactive MCQs using Google Gemini AI. Students can attempt quizzes, evaluate their performance, view instant results, and manage saved quizzes for effective exam preparation.
+
+# QuizGenie - Smart Quiz Generator
+
+## Project Description
+
+QuizGenie is a web application that helps students prepare for exams. Students can upload a lecture PDF or enter a topic, and QuizGenie uses Gemini AI to turn it into a multiple-choice quiz. Students can then attempt the quiz, check their results with explanations, and save quizzes to practice again later.
+
+## Features
+
+- **Generate Quiz:** Upload a lecture PDF or enter a topic, then choose a difficulty level (Easy, Medium, Hard) and the number of questions (5, 10, 15).
+- **AI Quiz Generation:** Gemini AI creates multiple-choice questions, each with four options.
+- **Attempt Quiz:** Answer the questions one by one using the Previous and Next buttons, with a progress indicator.
+- **Results:** See your score, percentage, and correct and wrong answers with explanations. You can also try the quiz again.
+- **Saved Quizzes:** View, rename and delete your saved quizzes.
+
+## Technologies Used
+
+| Category | Technology |
+|----------|------------|
+| Frontend | React, Vite 8.3.6, Axios, React Router |
+| Backend | Node.js 24.14.0, Express |
+| Database | MySQL 8.0.45 |
+| AI | Gemini API |
+| Tools | VS Code, Git, GitHub, ChatGPT/Claude (AI-assisted coding) |
+
+## API Endpoints
+
+| Method | Endpoint | Purpose |
+|--------|----------|---------|
+| POST | `/api/quizzes` | Generate and save a new quiz |
+| GET | `/api/quizzes` | Get all saved quizzes |
+| GET | `/api/quizzes/:id` | Get a single quiz by ID |
+| PUT | `/api/quizzes/:id` | Update (rename) a quiz |
+| DELETE | `/api/quizzes/:id` | Delete a quiz |
+| POST | `/api/quizzes/:id/attempts` | Submit a quiz attempt and get the result |
+
+## Setup and Installation (Windows)
+
+### Prerequisites
+
+- Node.js 24.14.0
+- MySQL 8.0.45
+- A Gemini API key
+
+### 1. Clone the Repository
+
+git clone https://github.com/Mahnoor-Naz/QuizGenie-Smart-Quiz-Generator.git
+cd QuizGenie-Smart-Quiz-Generator
+
+### 2. Backend Setup
+
+
+```bash
+cd backend
+npm install
+```
+
+Copy `.env.example` to a new file named `.env` inside the `backend` folder and fill in your details:
+
+```env
+GEMINI_API_KEY=your_gemini_api_key
+DB_HOST=localhost
+DB_USER=your_mysql_username
+DB_PASSWORD=your_mysql_password
+DB_NAME=[database_name]
+```
+
+> **Note:** The `.env` file contains private keys and passwords. It is listed in `.gitignore` and should **not** be pushed to GitHub.
+
+Create the MySQL database, then start the backend server:
+
+```bash
+[backend start command, e.g. npm start]
+```
+
+### 3. Frontend Setup
+
+Open a new terminal:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Open the local link shown in the terminal in your browser.
+
+## Usage
+
+1. **Generate a Quiz:** Upload a lecture PDF or type a topic, choose the difficulty and number of questions, then click generate.
+2. **Attempt the Quiz:** Select an answer for each question and move between questions with the Previous and Next buttons.
+3. **View Results:** After you submit, see your score, percentage, and correct and wrong answers with explanations. Click **Try Again** to reattempt.
+4. **Manage Saved Quizzes:** Go to Saved Quizzes to open, rename or delete any quiz.
+
+## Team Members and Roles
+
+| Name | Role | Responsibilities |
+|------|------|------------------|
+| Mahnoor Ahmer | Frontend Developer | React pages, UI components, routing and connecting the UI to the API |
+| [Name] | Backend Developer | [Responsibilities] |
+| [Name] | AI Integration | [Responsibilities] |
+| [Name] | Database and Quiz Management | [Responsibilities] |
+| [Name] | Quiz Evaluation, Testing and Integration | [Responsibilities] |
+
+## AI Assisted Development
+
+We used AI tools to help write parts of the code. We then tested the application ourselves, found the problems and fixed them. The prompts we used are recorded in [docs/prompt-log.md](docs/prompt-log.md).
+
+## GitHub Collaboration
+
+Our team worked in one shared GitHub repository. The project has separate `frontend` and `backend` folders so members could work on their parts without conflicts. Each member committed their own work to the repository.
