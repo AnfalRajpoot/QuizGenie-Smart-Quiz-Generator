@@ -1,0 +1,146 @@
+/* src/components/QuestionCard.css */
+/* Question card with option cards. */
+
+.question-card {
+  padding: var(--space-6);
+}
+
+/* Remove default fieldset styling */
+.question-fieldset {
+  border: none;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+.question-legend {
+  width: 100%;
+  padding: 0;
+  margin-bottom: var(--space-5);
+}
+
+/* Small grey "Question 1" pill */
+.question-pill {
+  display: inline-block;
+  margin-bottom: var(--space-3);
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--muted);
+  background-color: var(--neutral-light);
+  border-radius: var(--radius-pill);
+}
+
+/* Large bold question text */
+.question-text {
+  display: block;
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--text);
+}
+
+/* Options stacked full width */
+.options-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.option-item {
+  position: relative;
+}
+
+/* Hide the radio circle but keep it focusable */
+.option-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Option card */
+.option-label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px var(--space-4);
+  font-weight: 500;
+  color: var(--text);
+  background-color: var(--card-bg);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background-color var(--transition), border-color var(--transition),
+    color var(--transition), box-shadow var(--transition);
+}
+
+.option-label:hover {
+  background-color: var(--primary-light);
+  border-color: var(--primary);
+}
+
+/* White square with the letter */
+.option-letter {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  font-weight: 700;
+  color: var(--primary);
+  background-color: #ffffff;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+}
+
+.option-text {
+  flex: 1;
+}
+
+.option-check {
+  margin-left: auto;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+/* Selected option: purple with white text */
+.option-input:checked + .option-label {
+  color: #ffffff;
+  background-color: var(--primary);
+  border-color: var(--primary);
+  box-shadow: var(--shadow-hover);
+}
+
+.option-input:checked + .option-label:hover {
+  background-color: var(--primary-dark);
+}
+
+.option-input:checked + .option-label .option-letter {
+  border-color: #ffffff;
+}
+
+/* Focus outline when using the keyboard */
+.option-input:focus-visible + .option-label {
+  outline: 3px solid var(--primary);
+  outline-offset: 3px;
+}
+
+/* Disabled while submitting */
+.option-input:disabled + .option-label {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Small screens */
+@media (max-width: 600px) {
+  .question-card {
+    padding: var(--space-5);
+  }
+
+  .question-text {
+    font-size: 1.15rem;
+  }
+}

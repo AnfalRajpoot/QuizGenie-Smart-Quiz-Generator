@@ -5,6 +5,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import Home from "./pages/Home.jsx";
 import AttemptQuiz from "./pages/AttemptQuiz.jsx";
 import Results from "./pages/Results.jsx";
+import "./App.css";
 
 function App() {
   return (
