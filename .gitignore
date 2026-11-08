@@ -218,3 +218,12 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+# QuizGenie
+.env
+__pycache__/
+venv/
+*.db
+node_modules/
+dist/
+backend/uploads/*
+!backend/uploads/.gitkeep
