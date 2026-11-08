@@ -1,226 +1,271 @@
 /* src/components/SavedQuizList.css */
-/* Same dark style as QuizForm. Colours meet WCAG AA contrast. */
+/* Saved quizzes list in the light theme (uses variables from index.css). */
 
-/* Outer card holding the whole list */
+/* Outer white card */
 .saved-quizzes {
-  max-width: 520px;
-  margin: 32px auto;
-  padding: 28px;
-  background-color: #1e1e2e;
-  color: #f1f1f5;
-  border: 1px solid #3a3a4f;
-  border-radius: 12px;
+  width: 100%;
+  margin: 0;
+  padding: var(--space-6);
+  background-color: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
   text-align: left;
 }
 
 .saved-title {
-  font-size: 1.5rem;
-  margin: 0 0 16px;
+  margin: 0 0 20px;
+  font-size: var(--fs-xl);
+  font-weight: 700;
 }
 
 /* Loading and empty messages */
 .status-text {
   margin: 0;
-  color: #b4b4c6;
+  padding: var(--space-5);
+  text-align: center;
+  color: var(--muted);
+  background-color: var(--page-bg);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-md);
 }
 
-/* Error loading the list */
+/* Error loading the list (soft red box) */
 .list-error {
   margin: 0;
-  padding: 10px 12px;
-  color: #ffb4ab;
-  background-color: #3b1f24;
-  border-left: 4px solid #ff8a80;
-  border-radius: 6px;
+  padding: var(--space-3) var(--space-4);
+  font-weight: 500;
+  color: var(--error-dark);
+  background-color: var(--error-light);
+  border: 1px solid #fecaca;
+  border-radius: var(--radius-md);
 }
 
-/* List of cards (stacked) */
+/* Stacked cards */
 .quiz-list {
-  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
   margin: 0;
   padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  list-style: none;
 }
 
-/* One quiz card */
+/* One quiz: light card with hover effect */
 .quiz-card {
-  padding: 18px;
-  background-color: #2a2a3d;
-  border: 1px solid #4a4a63;
-  border-radius: 10px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--space-3);
+  padding: 20px;
+  background-color: var(--page-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  transition: border-color var(--transition), box-shadow var(--transition),
+    transform var(--transition);
+}
+
+.quiz-card:hover {
+  border-color: #c4b5fd;
+  box-shadow: var(--shadow-card);
+  transform: translateY(-2px);
 }
 
 .quiz-card[aria-busy="true"] {
-  opacity: 0.75;
+  opacity: 0.7;
 }
 
 .quiz-card-title {
   margin: 0;
-  font-size: 1.15rem;
-  overflow-wrap: anywhere; /* long titles wrap */
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+  overflow-wrap: anywhere;
 }
 
 /* Quiz details */
 .quiz-details {
-  list-style: none;
-  margin: 0;
-  padding: 0;
   display: flex;
   flex-wrap: wrap;
   gap: 6px 18px;
-  font-size: 0.95rem;
-  color: #e4e4ec;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--fs-sm);
+  color: var(--text);
 }
 
 .detail-label {
-  color: #b4b4c6;
+  color: var(--muted);
 }
 
-/* Difficulty badges (dark text on light colour) */
+/* Difficulty badges: soft colours with dark text */
 .badge {
   display: inline-block;
   padding: 2px 10px;
-  border-radius: 999px;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 700;
+  border-radius: var(--radius-pill);
 }
 
 .badge-easy {
-  background-color: #86efac;
-  color: #052e16;
+  color: var(--success-dark);
+  background-color: var(--success-light);
 }
 
 .badge-medium {
-  background-color: #fde68a;
-  color: #422006;
+  color: var(--warning-dark);
+  background-color: var(--warning-light);
 }
 
 .badge-hard {
-  background-color: #fca5a5;
-  color: #450a0a;
+  color: var(--error-dark);
+  background-color: var(--error-light);
 }
 
 /* Rename form */
 .rename-form {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--space-2);
 }
 
 .rename-label {
+  font-size: var(--fs-sm);
   font-weight: 600;
-  color: #e4e4ec;
+  color: var(--text);
 }
 
 .rename-form input {
-  padding: 10px 12px;
-  font-size: 1rem;
-  color: #f1f1f5;
-  background-color: #1e1e2e;
-  border: 1px solid #6b6b85;
-  border-radius: 8px;
+  width: 100%;
+  padding: 10px 14px;
+  font-size: var(--fs-base);
+  color: var(--text);
+  background-color: var(--card-bg);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+/* Focus: purple border and soft glow */
+.rename-form input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(109, 40, 217, 0.18);
 }
 
 .rename-form input[aria-invalid="true"] {
-  border-color: #ff8a80;
+  border-color: var(--error);
 }
 
 /* Error inside a card */
 .card-error {
   margin: 0;
-  font-size: 0.9rem;
-  color: #ffb4ab;
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--error-dark);
 }
 
 /* Delete confirmation box */
 .confirm-box {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  padding: 12px;
-  background-color: #3b1f24;
-  border-radius: 8px;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background-color: var(--error-light);
+  border: 1px solid #fecaca;
+  border-radius: var(--radius-md);
 }
 
 .confirm-text {
   margin: 0;
   font-weight: 600;
-  color: #ffdad6;
+  color: var(--error-dark);
 }
 
 /* Card buttons */
 .card-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: var(--space-2);
 }
 
+/* Shared pill shape for card buttons */
 .btn {
-  padding: 8px 16px;
-  font-size: 0.95rem;
+  padding: var(--space-2) 18px;
+  font-size: var(--fs-sm);
   font-weight: 600;
-  border-radius: 8px;
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-pill);
   cursor: pointer;
+  transition: background-color var(--transition), border-color var(--transition),
+    color var(--transition), box-shadow var(--transition);
 }
 
-/* Start / Save */
+/* Start / Save: purple pill */
 .btn-primary {
   color: #ffffff;
-  background-color: #4f46e5;
-  border: 1px solid #4f46e5;
+  background-color: var(--primary);
 }
 
-.btn-primary:hover {
-  background-color: #4338ca;
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--primary-dark);
+  box-shadow: var(--shadow-hover);
 }
 
-/* Rename / Cancel */
+/* Rename / Cancel: outline pill */
 .btn-secondary {
-  color: #e4e4ec;
-  background-color: #1e1e2e;
-  border: 1px solid #6b6b85;
+  color: var(--primary);
+  background-color: var(--card-bg);
+  border-color: var(--border);
 }
 
-/* Delete (outline) */
+.btn-secondary:hover:not(:disabled) {
+  background-color: var(--primary-light);
+  border-color: var(--primary);
+}
+
+/* Delete: soft red outline pill */
 .btn-danger {
-  color: #ffb4ab;
-  background: transparent;
-  border: 1px solid #ffb4ab;
+  color: var(--error);
+  background-color: var(--card-bg);
+  border-color: #fca5a5;
 }
 
-/* Yes, Delete (filled) */
+.btn-danger:hover:not(:disabled) {
+  background-color: var(--error-light);
+  border-color: var(--error);
+}
+
+/* Yes, Delete: filled red */
 .btn-danger-solid {
   color: #ffffff;
-  background-color: #b91c1c; /* white text on this: about 6.5:1 contrast */
-  border: 1px solid #b91c1c;
+  background-color: var(--error); /* about 6.5:1 with white text */
+}
+
+.btn-danger-solid:hover:not(:disabled) {
+  background-color: var(--error-dark);
 }
 
 .btn:disabled {
-  opacity: 0.6;
+  opacity: 0.55;
   cursor: not-allowed;
 }
 
-/* Clear focus outline for keyboard users */
-.saved-quizzes button:focus-visible,
-.saved-quizzes input:focus-visible {
-  outline: 3px solid #facc15;
+/* Visible focus outline on buttons */
+.saved-quizzes button:focus-visible {
+  outline: 3px solid var(--primary);
   outline-offset: 2px;
 }
 
-/* Small screens (mobile) */
+/* Small screens */
 @media (max-width: 600px) {
   .saved-quizzes {
-    margin: 16px;
-    padding: 18px;
+    padding: var(--space-5);
   }
 
   .quiz-card {
-    padding: 14px;
+    padding: var(--space-4);
   }
 
   /* Details one per line */
@@ -233,9 +278,8 @@
     flex-direction: column;
   }
 
-  .btn,
-  .rename-form input {
+  .btn {
     width: 100%;
-    box-sizing: border-box;
+    padding: 10px 18px;
   }
 }

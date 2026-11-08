@@ -1,103 +1,176 @@
 /* src/components/QuizForm.css */
-/* Dark theme form. Text colours meet WCAG AA contrast on the dark card. */
+/* Quiz generator form in the light theme (uses variables from index.css). */
 
-/* Card */
+/* White card with soft shadow */
 .quiz-form {
-  max-width: 520px;
-  margin: 32px auto;
-  padding: 28px;
-  background-color: #1e1e2e;  /* dark card */
-  color: #f1f1f5;             /* main text (very high contrast) */
-  border: 1px solid #3a3a4f;
-  border-radius: 12px;
-  text-align: left;           /* labels left-aligned */
+  width: 100%;
+  margin: 0;
+  padding: var(--space-6);
+  background-color: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  text-align: left; /* labels left-aligned */
 }
 
 /* Remove default fieldset styling */
 .quiz-fieldset {
-  border: none;
-  margin: 0;
-  padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 20px;
   min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
 }
 
+/* Disabled look while generating */
+.quiz-fieldset:disabled {
+  opacity: 0.7;
+}
+
+/* Form heading (legend) */
 .quiz-title {
-  font-size: 1.5rem;
-  font-weight: 700;
+  margin-bottom: var(--space-1);
   padding: 0;
-  margin-bottom: 4px;
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* Segmented control: Enter Topic / Upload PDF */
+.mode-toggle {
+  display: flex;
+  gap: var(--space-1);
+  padding: var(--space-1);
+  background-color: var(--primary-light);
+  border-radius: var(--radius-pill);
+}
+
+.toggle-btn {
+  flex: 1;
+  padding: 10px var(--space-4);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--primary-dark); /* about 7:1 on lavender */
+  background-color: transparent;
+  border: none;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: background-color var(--transition), color var(--transition),
+    box-shadow var(--transition);
+}
+
+.toggle-btn:hover {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+/* Selected option: purple with white text */
+.toggle-btn[aria-pressed="true"] {
+  color: #ffffff;
+  background-color: var(--primary);
+  box-shadow: var(--shadow-hover);
+}
+
+.quiz-fieldset:disabled .toggle-btn {
+  cursor: not-allowed;
 }
 
 /* Label above its input */
 .form-field {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: var(--space-2);
 }
 
 .form-field label {
+  font-size: var(--fs-sm);
   font-weight: 600;
-  color: #e4e4ec;
+  color: var(--text);
 }
 
 /* Small helper text */
 .hint {
   margin: 0;
-  font-size: 0.875rem;
-  color: #b4b4c6; /* about 8:1 contrast on the card */
+  font-size: var(--fs-sm);
+  color: var(--muted);
 }
 
-/* Inputs and selects */
+/* Text input and selects: white, light border, rounded */
 .quiz-form input[type="text"],
 .quiz-form select {
-  padding: 10px 12px;
-  font-size: 1rem;
-  color: #f1f1f5;
-  background-color: #2a2a3d;
-  border: 1px solid #6b6b85;
-  border-radius: 8px;
+  width: 100%;
+  padding: 12px 14px;
+  font-size: var(--fs-base);
+  color: var(--text);
+  background-color: var(--card-bg);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  transition: border-color var(--transition), box-shadow var(--transition);
 }
 
-.quiz-form input::placeholder {
-  color: #a0a0b4;
+.quiz-form input[type="text"]::placeholder {
+  color: var(--muted);
 }
 
+.quiz-form input[type="text"]:hover,
+.quiz-form select:hover {
+  border-color: #c4b5fd;
+}
+
+/* Focus: purple border and soft glow */
+.quiz-form input[type="text"]:focus,
+.quiz-form select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(109, 40, 217, 0.18);
+}
+
+/* PDF upload: large dashed drop area */
 .quiz-form input[type="file"] {
-  color: #e4e4ec;
-  font-size: 0.95rem;
-}
-
-/* Red border when the input has an error */
-.quiz-form input[aria-invalid="true"] {
-  border-color: #ff8a80;
-}
-
-/* Toggle buttons */
-.mode-toggle {
-  display: flex;
-  gap: 8px;
-}
-
-.toggle-btn {
-  flex: 1;
-  padding: 10px;
-  font-size: 1rem;
-  font-weight: 600;
-  color: #e4e4ec;
-  background-color: #2a2a3d;
-  border: 1px solid #6b6b85;
-  border-radius: 8px;
+  width: 100%;
+  padding: var(--space-6) var(--space-4);
+  font-size: var(--fs-sm);
+  color: var(--muted);
+  text-align: center;
+  background-color: var(--page-bg);
+  border: 2px dashed #8b5cf6;
+  border-radius: var(--radius-card);
   cursor: pointer;
+  transition: background-color var(--transition), border-color var(--transition);
 }
 
-/* Selected toggle option */
-.toggle-btn[aria-pressed="true"] {
+.quiz-form input[type="file"]:hover {
+  background-color: var(--primary-light);
+  border-color: var(--primary);
+}
+
+.quiz-form input[type="file"]:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* "Choose file" button inside the upload area */
+.quiz-form input[type="file"]::file-selector-button {
+  margin-right: var(--space-3);
+  padding: var(--space-2) 18px;
+  font-weight: 600;
   color: #ffffff;
-  background-color: #4f46e5; /* white text on this: about 6:1 contrast */
-  border-color: #4f46e5;
+  background-color: var(--primary);
+  border: none;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: background-color var(--transition);
+}
+
+.quiz-form input[type="file"]::file-selector-button:hover {
+  background-color: var(--primary-dark);
+}
+
+/* Red border when an input has an error */
+.quiz-form input[aria-invalid="true"] {
+  border-color: var(--error);
 }
 
 /* Selected file box */
@@ -105,116 +178,102 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  padding: 10px 12px;
-  background-color: #2a2a3d;
-  border: 1px solid #6b6b85;
-  border-radius: 8px;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--page-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
 }
 
 .file-name {
-  overflow-wrap: anywhere; /* long file names wrap instead of overflowing */
+  font-weight: 500;
+  color: var(--text);
+  overflow-wrap: anywhere; /* long file names wrap */
 }
 
+/* Remove button: soft red outline pill */
 .remove-btn {
-  padding: 6px 12px;
-  font-size: 0.9rem;
-  color: #ffb4ab;
-  background: transparent;
-  border: 1px solid #ffb4ab;
-  border-radius: 6px;
+  flex-shrink: 0;
+  padding: 6px var(--space-4);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--error);
+  background-color: var(--card-bg);
+  border: 1.5px solid #fca5a5;
+  border-radius: var(--radius-pill);
   cursor: pointer;
+  transition: background-color var(--transition), border-color var(--transition);
+}
+
+.remove-btn:hover {
+  background-color: var(--error-light);
+  border-color: var(--error);
 }
 
 /* Difficulty and question count side by side */
 .form-row {
   display: flex;
-  gap: 16px;
+  gap: var(--space-4);
 }
 
 .form-row .form-field {
   flex: 1;
 }
 
-/* Error message */
+/* Error message (soft red box) */
 .error-text {
   margin: 0;
-  padding: 10px 12px;
-  color: #ffb4ab;              /* about 9:1 contrast on the dark background */
-  background-color: #3b1f24;
-  border-left: 4px solid #ff8a80;
-  border-radius: 6px;
+  padding: var(--space-3) var(--space-4);
+  font-weight: 500;
+  color: var(--error-dark);
+  background-color: var(--error-light);
+  border: 1px solid #fecaca;
+  border-radius: var(--radius-md);
 }
 
-/* Submit button */
+/* Generate Quiz: full-width purple pill */
 .submit-btn {
-  padding: 12px;
-  font-size: 1rem;
+  width: 100%;
+  padding: 14px var(--space-5);
+  font-size: var(--fs-base);
   font-weight: 700;
   color: #ffffff;
-  background-color: #4f46e5;
+  background-color: var(--primary);
   border: none;
-  border-radius: 8px;
+  border-radius: var(--radius-pill);
   cursor: pointer;
+  transition: background-color var(--transition), box-shadow var(--transition);
 }
 
-.submit-btn:hover {
-  background-color: #4338ca;
+.submit-btn:hover:not(:disabled) {
+  background-color: var(--primary-dark);
+  box-shadow: var(--shadow-hover);
 }
 
-/* Disabled look while generating */
-.quiz-fieldset:disabled .submit-btn,
-.quiz-fieldset:disabled .toggle-btn,
-.quiz-fieldset:disabled select,
-.quiz-fieldset:disabled input {
+.submit-btn:disabled {
   cursor: not-allowed;
-  opacity: 0.7;
 }
 
-/* Clear focus outline for keyboard users */
-.quiz-form button:focus-visible,
-.quiz-form input:focus-visible,
-.quiz-form select:focus-visible {
-  outline: 3px solid #facc15; /* bright yellow, easy to see on dark */
+/* Visible focus outline on buttons */
+.quiz-form button:focus-visible {
+  outline: 3px solid var(--primary);
   outline-offset: 2px;
 }
 
-/* Hidden on screen but read by screen readers */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
+/* (.sr-only comes from index.css) */
 
-/* Small screens (mobile) */
+/* Small screens */
 @media (max-width: 600px) {
   .quiz-form {
-    margin: 16px;      /* space from the screen edges */
-    padding: 18px;     /* less padding */
+    padding: var(--space-5);
   }
 
   /* Stack difficulty and question count */
   .form-row {
     flex-direction: column;
-    gap: 18px;
   }
 
-  /* Full-width inputs and buttons */
-  .quiz-form input[type="text"],
-  .quiz-form input[type="file"],
-  .quiz-form select,
-  .submit-btn {
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  .mode-toggle {
-    flex-direction: column;
+  .quiz-form input[type="file"] {
+    padding: var(--space-5) var(--space-3);
   }
 }

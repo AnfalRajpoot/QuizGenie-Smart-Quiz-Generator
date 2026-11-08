@@ -3,17 +3,26 @@
 | # | Prompt (short) | What AI gave | What was wrong | How we fixed it | Member |
 |---|---|---|---|---|---|
 | 1 | Generate a README for QuizGenie (description, features, tech stack, API endpoints, setup, usage, team, GitHub collaboration) | Full README in Markdown | Some fields were placeholders (clone URL, team names, database name, start command) | Added my own name; other placeholders will be filled before final submission | Mahnoor |
+
 | 2 | Create src/mock/mockQuiz.js with mockQuizList, mockQuiz (without correct answers) and mockAttemptResult (4/5 correct), using exact field names | Mock data file with 3 named exports | Nothing wrong. Checked field names against our API contract and checked answers manually | No fix needed | Mahnoor |
+
 | 3 | How to test the mock data file from the terminal without creating a new file | Node commands that check exports, field values, hidden answers and score | Nothing wrong. All 8 checks returned true | No fix needed | Mahnoor |
+
 | 4 | Routing for 3 screens using react-router-dom 7.18.5 | main.jsx (router setup), App.jsx (routes + header), 3 placeholder pages | Nothing wrong. Used the correct v7 syntax (Routes + element, not old Switch) | No fix needed. Tested /, /quiz/1, /results, /abc in browser | Mahnoor |
+
 | 5 | Data service file quizApi.js with CRUD functions, mock on/off switch, loading delay and error handling | quizApi.js with 6 functions using mock data or axios | 2 mismatches with our API contract: errors were read from "message" instead of "error", and the PDF field was named "pdf" instead of "file" | Fixed by hand: changed to data?.error and formData.get("file") | Mahnoor |
+
 | 6 | How to test all quizApi.js functions from the terminal without creating a file | Node command testing all CRUD functions, submit, empty form error and wrong id error | AI said to run it from the main project folder, but the src folder is inside frontend, so it must be run from the frontend folder | Ran it from the frontend folder; all 8 checks passed (screenshot: quizapi-test.png) | Mahnoor |
+
 | 7 | Vague prompt: "Create a quiz generator form in React. The user should be able to type a topic or upload a PDF, pick a difficulty level and how many questions they want, then press a button to generate the quiz." | QuizForm.jsx, QuizForm.css and Home page update | Sent PDF as "pdf" instead of "file" (mismatch with API contract); no file size limit; error not announced to screen readers; Topic/PDF tabs don't tell screen readers which one is selected; no keyboard focus style; no mobile adjustments; labels centered and low contrast on dark background | Kept as the vague version for comparison; fixed with a detailed prompt | Mahnoor |
+
 | 8 | Detailed prompt: rebuild the same QuizForm with clear requirements for data, validation, accessibility, responsiveness and state | New QuizForm.jsx and QuizForm.css meeting all the requirements | AI also told me to change formData.get("pdf") to "file" in quizApi.js, but this was already fixed earlier, so the instruction was outdated | Did not apply the outdated change; used the new QuizForm and CSS and tested them on desktop and mobile | Mahnoor |
+
 | 9 | Home page: saved quiz list (SavedQuizList.jsx + CSS) below the QuizForm with Start, Rename and Delete, plus loading, empty and error states | SavedQuizList.jsx, SavedQuizList.css and updated Home.jsx | Nothing wrong. AI chose an in-card delete confirmation instead of a browser pop-up, which works better with keyboard and screen readers. With mock data, renamed and deleted quizzes come back after a page refresh (expected until the real backend is connected) | No fix needed. Tested list loading, empty title error, rename, delete with confirmation and cancel, empty list message, Start button and mobile layout | Mahnoor | (screenshots: home-mobile.png, home-delete-confirm.png)
+
 | 10 | Attempt Quiz and Results screens with a professional light theme: design system (CSS variables, Inter font), summary bar with progress, A–D option cards, question navigator, unanswered check, grade and breakdown cards, answer review, Try Again, and mobile layout | index.css, App.css, QuestionCard.jsx/.css, AttemptQuiz.jsx/.css, Results.jsx/.css | Nothing wrong in the new code. AI noticed that App.jsx was not importing App.css (left out in the earlier routing code), so the header styles would not apply. With mock data every quiz shows the same 5 OS questions (expected until the backend and AI are connected) | Added import "./App.css" to App.jsx. Tested answering, Previous/Next, navigator, unanswered warning, submit, results, Try Again, refresh (No result found), keyboard and mobile layout | Mahnoor |
 
-
+| 11 | Restyle the Home page (QuizForm and Saved Quizzes) to the same light theme, two-column layout on large screens | AI rewrote QuizForm.css and SavedQuizList.css with the index.css variables, added Home.css for the grid layout and one import in Home.jsx | Before pasting, I checked with Select-String that every CSS variable the AI used actually exists in index.css. All were present, so no change was needed. This also fixed the earlier issue where the saved quiz headings were dark text on a dark card. Tested on desktop, iPhone SE view and keyboard Tab focus. |
 
 
 ## Vague vs Detailed Prompt (UI component: QuizForm)

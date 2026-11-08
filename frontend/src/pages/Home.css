@@ -1,0 +1,16 @@
+/* src/pages/Home.css */
+/* Home layout: form on the left, saved quizzes on the right. */
+
+.home-page {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--space-5);
+  align-items: start; /* each card keeps its own height */
+}
+
+/* Tablets and phones: one column */
+@media (max-width: 960px) {
+  .home-page {
+    grid-template-columns: 1fr;
+  }
+}
