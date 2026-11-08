@@ -1,6 +1,12 @@
-// Home page: will show the quiz form and saved quizzes
+// Home page: quiz generator form (saved quizzes will be added later)
+import QuizForm from "../components/QuizForm.jsx";
+
 function Home() {
-  return <h1>Home</h1>;
+  return (
+    <div>
+      <QuizForm />
+    </div>
+  );
 }
 
 export default Home;
