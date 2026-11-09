@@ -96,7 +96,7 @@ Open the local link shown in the terminal in your browser.
 
 | Name | Role | Responsibilities |
 |------|------|------------------|
-| Mahnoor Ahmer | Frontend Developer | React pages, UI components, routing and connecting the UI to the API |
+| Mahnoor Ahmer | Frontend Developer and manager | React pages, UI components, routing and connecting the UI to the API |
 | [Name] | Backend Developer | [Responsibilities] |
 | [Name] | AI Integration | [Responsibilities] |
 | [Name] | Database and Quiz Management | [Responsibilities] |
